@@ -1,0 +1,93 @@
+<h2>Interpolation, 1 Way Binding, Event Binding</h2>
+<img [src]="imgUrl">
+<br>
+<input
+  type="text"
+  (keydown.enter)="onInput($event)"
+  (blur)="onBlur(myInput.value)"
+  #myInput
+>
+<button (click)="onClick()">Click Me!</button>
+<p>{{inputValue}}</p>
+
+<hr>
+
+<h2>2 Way Binding</h2>
+<input type="text" [(ngModel)]="title">
+<p>{{title}}</p>
+
+<hr>
+
+<h2>Directive: ngStyle</h2>
+<div [ngStyle]="{
+  width: '30px',
+  height: '30px',
+  borderRadius: '50%',
+  background: backgroundToggleStyle ? 'red' : 'blue',
+  border: '2px solid black'
+}">
+</div>
+<button (click)="backgroundToggleStyle = !backgroundToggleStyle">Toggle</button>
+
+<hr>
+
+<h2>Directive: ngClass</h2>
+<p [ngClass]="{
+  red: backgroundToggleClass,
+  blue: !backgroundToggleClass
+}">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+<p
+  [class.blue]="backgroundToggleClass"
+  [class.red]="!backgroundToggleClass"
+>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+<button (click)="backgroundToggleClass = !backgroundToggleClass">Toggle</button>
+
+<hr>
+
+<h2>Directive: ngIf</h2>
+
+<p *ngIf="toggle; else blueP" class="red">Red Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+<ng-template #blueP>
+  <p class="blue">Blue Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+</ng-template>
+<button (click)="toggle = !toggle">Toggle</button>
+
+<hr>
+
+<h2>Directive: ngSwitch</h2>
+<select (input)="onSelect($event)">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>default</option>
+</select>
+<div [ngSwitch]="switchInput">
+  <p *ngSwitchCase=1>Case 1</p>
+  <p *ngSwitchCase=2>Case 2</p>
+  <p *ngSwitchCase=3>Case 3</p>
+  <p *ngSwitchDefault>Default</p>
+</div>
+
+<hr>
+
+<h2>Directive: ngFor</h2>
+
+<ul>
+  <li *ngFor="let item of names; let i = index">{{i+1}}: {{item}}</li>
+</ul>
+<ul>
+  <li *ngFor="let post of news">
+    {{post.title}}:<strong>{{post.author}}</strong>
+
+    <ul>
+      Comments:
+      <li style="list-style-type: circle" *ngFor="let comment of post.comments">{{comment.name}}: {{comment.text}}</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Pipe</h2>
+
+<p>{{now | date:'long' | uppercase}}</p>

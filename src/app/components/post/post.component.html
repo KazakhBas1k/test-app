@@ -1,0 +1,7 @@
+<div class="card">
+  <h2>{{post.title}}</h2>
+  <p>{{post.text}}</p>
+  <button class="btn" (click)="removePost()">&times;</button>
+  <!--Передача элементов в компонент-->
+  <ng-content></ng-content>
+</div>
